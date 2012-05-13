@@ -16,6 +16,15 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize userId;
+
+
+static AppDelegate* _appDelegate = nil;
+
++ (AppDelegate *) getDelegate
+{
+    return _appDelegate;
+}
 
 - (void)dealloc
 {
@@ -65,6 +74,12 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+}
+
+- (NSString *) getUserId
+{
+    self.userId = TEMP_USER_ID;   
+    return self.userId;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

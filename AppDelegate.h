@@ -10,8 +10,16 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+{
+    NSString *userId;   
+}
 
+@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, retain) NSString *userId;
 @property (strong, nonatomic) UITabBarController *tabBarController;
+
++ (AppDelegate *) getDelegate;
+
+- (NSString *) getUserId;
 
 @end
