@@ -18,6 +18,25 @@
 + (NSArray *)getRemoteIdeas
 {
     NSArray * ideas = [[[NSArray alloc] initWithObjects:nil] autorelease];
+    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@",SERVER_URL, @"zFwrzUEQgrMNC2LGaxR1"];
+    //NSMutableArray *currentIdeas = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSLog(@"%@",allIdeasReq);
+    ASIHTTPRequest *ideas_req = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:allIdeasReq]];
+    [ideas_req setRequestMethod:@"GET"];
+    [ideas_req setDelegate:self];
+    [ideas_req addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [ideas_req startSynchronous];
+    NSError *error = [ideas_req error];
+    if (!error) {
+        NSString *response = [ideas_req responseString];
+        NSLog(@"%@",response);
+    } 
+    else
+    {
+        NSLog(@" %@", error);
+    }
+    
     return ideas;
 }
 

@@ -43,6 +43,7 @@ static AppDelegate* _appDelegate = nil;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    NSArray * ideas = [Idea getRemoteIdeas];
     return YES;
 }
 
@@ -78,7 +79,8 @@ static AppDelegate* _appDelegate = nil;
 
 - (NSString *) getUserId
 {
-    self.userId = TEMP_USER_ID;   
+    self.userId = TEMP_USER_ID;
+    NSLog(@">>>> %@", self.userId);
     return self.userId;
 }
 
