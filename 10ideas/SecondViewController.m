@@ -11,6 +11,7 @@
 @implementation SecondViewController
 @synthesize ideasCount;
 @synthesize ideasLabel;
+@synthesize table;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"myUpdated" object:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -97,6 +99,11 @@
     details.edit = YES;
     
     [self.navigationController pushViewController:details animated:YES];
+}
+
+- (void) reloadData
+{
+    [self.table reloadData];
 }
 
 @end

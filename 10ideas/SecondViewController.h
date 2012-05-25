@@ -13,9 +13,11 @@
 {
     UILabel *ideasCount;
     UILabel *ideasLabel;
+     IBOutlet UITableView *table;
 }
 @property (retain, nonatomic) IBOutlet UILabel *ideasCount;
 @property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
+@property (retain, nonatomic) IBOutlet UITableView *table;
 - (IBAction)handleCreateIdea:(id)sender;
-
+- (void) reloadData;
 @end

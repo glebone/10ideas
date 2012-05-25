@@ -35,4 +35,6 @@
 
 - (void)setUserId:(NSString *)newValue;
 
+- (void) getIdeasAfterLogin;
+
 @end

@@ -51,7 +51,7 @@ static AppDelegate* _appDelegate = nil;
         [self.tabBarController presentModalViewController:curLogging animated:NO];
     }
 
-   
+    self.publicIdeas = [Idea getRemotePublicIdeas];
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
@@ -66,19 +66,17 @@ static AppDelegate* _appDelegate = nil;
     [self.window makeKeyAndVisible];
     
     
-
-    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"userId"])
+<<<<<<< HEAD
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"userId"])
     {
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getIdeasAfterLogin) name:@"needUpdateIdeas" object:nil];
         loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
         [self.tabBarController presentModalViewController:curLogging animated:NO];
     }
-    else {
-        self.myIdeas = [Idea getRemoteIdeas];
-        self.publicIdeas = [Idea getRemotePublicIdeas]; 
-    }
     
-    
+    myIdeas = [Idea getRemoteIdeas];
+     
+=======
+>>>>>>> f0702b5407899ab0912ad0852242a4dc76b1e1d4
 //    NSArray * ideas = [Idea getRemoteIdeas];
 //    
 //    Idea *newIdea = [Idea alloc];
@@ -88,14 +86,6 @@ static AppDelegate* _appDelegate = nil;
 //    [[publicArray objectAtIndex:1] rateIdea];
     
     return YES;
-}
-
-- (void) getIdeasAfterLogin
-{
-    self.myIdeas = [Idea getRemoteIdeas];
-    self.publicIdeas = [Idea getRemotePublicIdeas]; 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"myUpdated" object:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"publicUpdated" object:self];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

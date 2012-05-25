@@ -35,6 +35,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"publicUpdated" object:nil];
 }
 
 - (void)viewDidUnload
@@ -90,6 +91,13 @@
     
     [self.navigationController pushViewController:details animated:YES];
     
+}
+
+- (void) reloadData
+{
+     
+    [self.table reloadData];
+
 }
 
 

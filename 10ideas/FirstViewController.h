@@ -17,4 +17,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *ideasCount;
 @property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
 
+
+- (void) reloadData;
+
 @end

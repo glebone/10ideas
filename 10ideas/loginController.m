@@ -90,7 +90,7 @@
 
             NSLog(@"%@", [parsedDic objectForKey:@"auth_token"]);
             NSLog(@"%@", [[AppDelegate getDelegate] getUserId]);   
-
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"needUpdateIdeas" object:self];
             
             [self dismissModalViewControllerAnimated:YES];
         }    
