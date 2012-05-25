@@ -7,6 +7,7 @@
 //
 
 #import "Idea.h"
+#import "SBJson.h"
 
 @implementation Idea
 
@@ -17,7 +18,6 @@
 
 + (NSArray *)getRemoteIdeas
 {
-    NSArray * ideas = [[[NSArray alloc] initWithObjects:nil] autorelease];
     NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@",SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"];
     //NSMutableArray *currentIdeas = [[[NSMutableArray alloc] init] autorelease];
     
@@ -28,16 +28,29 @@
     [ideas_req addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
     [ideas_req startSynchronous];
     NSError *error = [ideas_req error];
-    if (!error) {
-        NSString *response = [ideas_req responseString];
-        NSLog(@"%@",response);
-    } 
-    else
-    {
+    
+    if (error) {
         NSLog(@" %@", error);
+        return nil;
+    }
+
+    NSArray *parsedArray  = [[ideas_req responseString] JSONValue];
+    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    for (NSDictionary *item in parsedArray) 
+    {
+        [objects addObject:[Idea makeIdeaFromDictionary:item]]; 
     }
     
-    return ideas;
+    return objects;
+}
+
++ (Idea *) makeIdeaFromDictionary:(NSDictionary *)dict
+{
+    Idea *tmp = [[[Idea alloc] init] autorelease];
+    tmp.ideaText = [dict objectForKey:@"essential"];
+    NSLog(@"%@",tmp.ideaText);
+    
+    return tmp;
 }
 
 + (NSArray *)getRemotePublicIdeas

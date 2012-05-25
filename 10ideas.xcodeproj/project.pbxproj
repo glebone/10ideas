@@ -37,6 +37,18 @@
 		0CF0B7DA156FE9770035F4A9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B7D9156FE9770035F4A9 /* SystemConfiguration.framework */; };
 		0CF0B7DC156FE9A00035F4A9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B7DB156FE9A00035F4A9 /* MobileCoreServices.framework */; };
 		0CF0B7DE156FE9BC0035F4A9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B7DD156FE9BC0035F4A9 /* libz.dylib */; };
+		927C5234156FF5BC0004B0DD /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7B9156FE0990035F4A9 /* SBJsonParser.m */; };
+		927C5235156FF5BC0004B0DD /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7BB156FE0990035F4A9 /* SBJsonStreamParser.m */; };
+		927C5236156FF5BC0004B0DD /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7BD156FE0990035F4A9 /* SBJsonStreamParserAccumulator.m */; };
+		927C5237156FF5BC0004B0DD /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7BF156FE0990035F4A9 /* SBJsonStreamParserAdapter.m */; };
+		927C5238156FF5BC0004B0DD /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7C1156FE0990035F4A9 /* SBJsonStreamParserState.m */; };
+		927C5239156FF5BC0004B0DD /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7C3156FE0990035F4A9 /* SBJsonStreamWriter.m */; };
+		927C523A156FF5BC0004B0DD /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7C5156FE0990035F4A9 /* SBJsonStreamWriterAccumulator.m */; };
+		927C523B156FF5BC0004B0DD /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7C7156FE0990035F4A9 /* SBJsonStreamWriterState.m */; };
+		927C523C156FF5BC0004B0DD /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7C9156FE0990035F4A9 /* SBJsonTokeniser.m */; };
+		927C523D156FF5BC0004B0DD /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7CB156FE0990035F4A9 /* SBJsonUTF8Stream.m */; };
+		927C523E156FF5BC0004B0DD /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7CD156FE0990035F4A9 /* SBJsonWriter.m */; };
+		927C523F156FF5BC0004B0DD /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7B6156FE0880035F4A9 /* NSObject+SBJson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -376,6 +388,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927C5234156FF5BC0004B0DD /* SBJsonParser.m in Sources */,
+				927C5235156FF5BC0004B0DD /* SBJsonStreamParser.m in Sources */,
+				927C5236156FF5BC0004B0DD /* SBJsonStreamParserAccumulator.m in Sources */,
+				927C5237156FF5BC0004B0DD /* SBJsonStreamParserAdapter.m in Sources */,
+				927C5238156FF5BC0004B0DD /* SBJsonStreamParserState.m in Sources */,
+				927C5239156FF5BC0004B0DD /* SBJsonStreamWriter.m in Sources */,
+				927C523A156FF5BC0004B0DD /* SBJsonStreamWriterAccumulator.m in Sources */,
+				927C523B156FF5BC0004B0DD /* SBJsonStreamWriterState.m in Sources */,
+				927C523C156FF5BC0004B0DD /* SBJsonTokeniser.m in Sources */,
+				927C523D156FF5BC0004B0DD /* SBJsonUTF8Stream.m in Sources */,
+				927C523E156FF5BC0004B0DD /* SBJsonWriter.m in Sources */,
+				927C523F156FF5BC0004B0DD /* NSObject+SBJson.m in Sources */,
 				0CF0B772156FDEC10035F4A9 /* main.m in Sources */,
 				0CF0B776156FDEC10035F4A9 /* AppDelegate.m in Sources */,
 				0CF0B779156FDEC10035F4A9 /* FirstViewController.m in Sources */,
@@ -473,6 +497,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "10ideas/10ideas-Prefix.pch";
 				INFOPLIST_FILE = "10ideas/10ideas-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -484,6 +512,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "10ideas/10ideas-Prefix.pch";
 				INFOPLIST_FILE = "10ideas/10ideas-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -508,6 +540,7 @@
 				0CF0B78F156FDEC10035F4A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

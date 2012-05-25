@@ -10,9 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
-#import "SBJson.h"
 #import "AppDelegate.h"
-
+#import "NSObject+SBJson.h"
 
 
 @interface Idea : NSObject
@@ -28,6 +27,8 @@
 - (id) initWithIdeaText:(NSString *) text;
 + (NSArray *) getRemoteIdeas;
 + (NSArray *) getRemotePublicIdeas;
++ (Idea *) makeIdeaFromDictionary:(NSDictionary *)dict;
+
 + (Idea *) getIdeaWithId:(NSString *)ideaId;
 
 - (void) sendIdea;
