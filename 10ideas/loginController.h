@@ -27,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *emailText;
 @property (nonatomic, retain) IBOutlet UITextField *passwordText;
 @property (nonatomic, retain) IBOutlet UIView *logView;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 - (IBAction)OnLogin:(id)sender;
 - (void) loginDone:(ASIHTTPRequest *)req;

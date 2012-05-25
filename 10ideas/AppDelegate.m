@@ -31,16 +31,9 @@ static AppDelegate* _appDelegate = nil;
 }
 - (NSString *)userId {
     if (!userId)
-        userId =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userId"];
+        userId =  [[[NSUserDefaults standardUserDefaults] valueForKey:@"userId"] retain];
     
     return userId;
-}
-
-- (void)setUserId:(NSString *)newValue {
-    [userId autorelease];
-    userId = [newValue retain];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:userId forKey:@"userId"];
 }
 
 - (void)dealloc
@@ -52,6 +45,12 @@ static AppDelegate* _appDelegate = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if ([self userId] == nil)
+    {
+        loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
+        [self.tabBarController presentModalViewController:curLogging animated:NO];
+    }
+
     self.publicIdeas = [Idea getRemotePublicIdeas];
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -67,12 +66,6 @@ static AppDelegate* _appDelegate = nil;
     [self.window makeKeyAndVisible];
     
     
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"userId"])
-    {
-        loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
-        [self.tabBarController presentModalViewController:curLogging animated:NO];
-    }
-     
 //    NSArray * ideas = [Idea getRemoteIdeas];
 //    
 //    Idea *newIdea = [Idea alloc];

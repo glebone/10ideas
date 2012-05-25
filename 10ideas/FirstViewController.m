@@ -34,9 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    loginController *curLogin = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
-    [self presentModalViewController:curLogin animated:NO];
-  
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
