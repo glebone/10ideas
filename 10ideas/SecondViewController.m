@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"myUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataView) name:@"myUpdated" object:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -101,7 +101,7 @@
     [self.navigationController pushViewController:details animated:YES];
 }
 
-- (void) reloadData
+- (void) reloadDataView
 {
     [self.table reloadData];
 }

@@ -18,6 +18,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
 
 
-- (void) reloadData;
+- (void) reloadDataView;
 
 @end

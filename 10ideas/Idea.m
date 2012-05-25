@@ -141,12 +141,13 @@
     if (!error) {
         NSString *response = [req responseString];
         NSLog(@"-- %@", response);
-        
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"needUpdateIdeas" object:self];
     }
     else
     {
         NSLog(@"%@", error);
     }
+    
    
 }
 

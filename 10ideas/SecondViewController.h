@@ -19,5 +19,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
 @property (retain, nonatomic) IBOutlet UITableView *table;
 - (IBAction)handleCreateIdea:(id)sender;
-- (void) reloadData;
+- (void) reloadDataView;
 @end

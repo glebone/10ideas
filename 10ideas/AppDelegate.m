@@ -51,7 +51,7 @@ static AppDelegate* _appDelegate = nil;
         [self.tabBarController presentModalViewController:curLogging animated:NO];
     }
 
-   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getIdeasAfterLogin) name:@"needUpdateIdeas" object:nil];
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
@@ -69,7 +69,7 @@ static AppDelegate* _appDelegate = nil;
 
     if (![[NSUserDefaults standardUserDefaults] valueForKey:@"userId"])
     {
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getIdeasAfterLogin) name:@"needUpdateIdeas" object:nil];
+         
         loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
         [self.tabBarController presentModalViewController:curLogging animated:NO];
     }

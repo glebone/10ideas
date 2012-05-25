@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"publicUpdated" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataView) name:@"publicUpdated" object:nil];
 }
 
 - (void)viewDidUnload
@@ -93,7 +93,7 @@
     
 }
 
-- (void) reloadData
+- (void) reloadDataView
 {
      
     [self.table reloadData];
