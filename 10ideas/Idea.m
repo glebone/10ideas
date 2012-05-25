@@ -36,6 +36,9 @@
 
     NSArray *parsedArray  = [[ideas_req responseString] JSONValue];
     NSMutableArray *objects = [[NSMutableArray alloc] init];
+
+    NSLog(@"%@",objects);
+    
     for (NSDictionary *item in parsedArray) 
     {
        

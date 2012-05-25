@@ -33,7 +33,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self updateCount];
+}
+- (void) updateCount {
     int count = [[[AppDelegate getDelegate] myIdeas] count];
     ideasCount.text = [NSString stringWithFormat:@"%d",count];
     
@@ -54,6 +56,7 @@
         ideasLabel.text = @"Ideas left";
     }
 }
+
 #pragma mark - TABLE VIEW
 - (int) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -104,6 +107,7 @@
 - (void) reloadDataView
 {
     [self.table reloadData];
+    [self updateCount];
 }
 
 @end
