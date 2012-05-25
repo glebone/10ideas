@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C77CD52156FFECE0079A7CB /* loginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C77CD51156FFECE0079A7CB /* loginController.xib */; };
 		0CF0B766156FDEC10035F4A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B765156FDEC10035F4A9 /* UIKit.framework */; };
 		0CF0B768156FDEC10035F4A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B767156FDEC10035F4A9 /* Foundation.framework */; };
 		0CF0B76A156FDEC10035F4A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B769156FDEC10035F4A9 /* CoreGraphics.framework */; };
@@ -31,7 +32,6 @@
 		0CF0B7B3156FE0600035F4A9 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7A9156FE0600035F4A9 /* ASIInputStream.m */; };
 		0CF0B7B4156FE0600035F4A9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7AB156FE0600035F4A9 /* ASINetworkQueue.m */; };
 		0CF0B7D1156FE0C40035F4A9 /* loginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7CF156FE0C40035F4A9 /* loginController.m */; };
-		0CF0B7D2156FE0C40035F4A9 /* loginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF0B7D0156FE0C40035F4A9 /* loginController.xib */; };
 		0CF0B7D6156FE0D90035F4A9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF0B7D5156FE0D80035F4A9 /* Reachability.m */; };
 		0CF0B7D8156FE9680035F4A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B7D7156FE9680035F4A9 /* CFNetwork.framework */; };
 		0CF0B7DA156FE9770035F4A9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF0B7D9156FE9770035F4A9 /* SystemConfiguration.framework */; };
@@ -52,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C77CD51156FFECE0079A7CB /* loginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginController.xib; sourceTree = "<group>"; };
 		0CF0B761156FDEC10035F4A9 /* 10ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 10ideas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF0B765156FDEC10035F4A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0CF0B767156FDEC10035F4A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -121,7 +122,6 @@
 		0CF0B7CD156FE0990035F4A9 /* SBJsonWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		0CF0B7CE156FE0C40035F4A9 /* loginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginController.h; sourceTree = "<group>"; };
 		0CF0B7CF156FE0C40035F4A9 /* loginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginController.m; sourceTree = "<group>"; };
-		0CF0B7D0156FE0C40035F4A9 /* loginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginController.xib; sourceTree = "<group>"; };
 		0CF0B7D4156FE0D80035F4A9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		0CF0B7D5156FE0D80035F4A9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		0CF0B7D7156FE9680035F4A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -256,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				0CF0B7CE156FE0C40035F4A9 /* loginController.h */,
+				0C77CD51156FFECE0079A7CB /* loginController.xib */,
 				0CF0B7CF156FE0C40035F4A9 /* loginController.m */,
-				0CF0B7D0156FE0C40035F4A9 /* loginController.xib */,
 				0CF0B785156FDEC10035F4A9 /* FirstViewController.xib */,
 				0CF0B788156FDEC10035F4A9 /* SecondViewController.xib */,
 				0CF0B77E156FDEC10035F4A9 /* SecondViewController.h */,
@@ -377,7 +377,7 @@
 				0CF0B784156FDEC10035F4A9 /* second@2x.png in Resources */,
 				0CF0B787156FDEC10035F4A9 /* FirstViewController.xib in Resources */,
 				0CF0B78A156FDEC10035F4A9 /* SecondViewController.xib in Resources */,
-				0CF0B7D2156FE0C40035F4A9 /* loginController.xib in Resources */,
+				0C77CD52156FFECE0079A7CB /* loginController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

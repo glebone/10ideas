@@ -9,6 +9,7 @@
 #import "loginController.h"
 
 @implementation loginController
+@synthesize loginButton, emailText, passwordText, logView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,57 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)OnLogin:(id)sender
+{
+    if (![self.emailText.text isEqualToString:@""] && ![self.passwordText.text isEqualToString:@""])
+    {
+        NSString *loginStr = [NSString stringWithFormat:@"%@/users.json", SERVER_URL]; 
+        ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
+        
+        [request setPostValue:self.emailText.text forKey:@"user[email]"];
+        [request setPostValue:self.passwordText.text forKey:@"user[password]"];
+        [request addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+        [request setDelegate:self];
+        [request setDidFinishSelector:@selector(loginDone:)];
+        [request setDidFailSelector:@selector(loginFailed:)];
+        [request setRequestMethod:@"POST"];
+        [request startAsynchronous];
+    }
+    NSLog(@"on logging");
+    
+    [self.view removeFromSuperview];
+}
+
+- (void) loginDone:(ASIHTTPRequest *)req
+{
+    NSLog(@"Login done");
+    NSError *error = [req error];
+    if (!error) {
+        NSString *response = [req responseString];
+        NSLog(@"-- %@", response);
+        NSDictionary *parsedDic  = [response JSONValue];
+        if ([parsedDic objectForKey:@"auth_token"])
+        {    
+         [[AppDelegate getDelegate] setUserId:[parsedDic objectForKey:@"auth_token"]];
+         [self.view removeFromSuperview];
+             NSLog(@"%@", [parsedDic objectForKey:@"auth_token"]);
+            NSLog(@"%@", [[AppDelegate getDelegate] getUserId]);   
+        }    
+        
+    }
+    else
+    {
+        NSLog(@"%@", error);
+    }
+
+    
+}
+
+- (void) loginFailed:(ASIHTTPRequest *)req
+{
+    NSLog(@"Login Failed");
 }
 
 @end

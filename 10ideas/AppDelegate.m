@@ -12,6 +12,8 @@
 
 #import "SecondViewController.h"
 
+#import "loginController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -43,7 +45,19 @@ static AppDelegate* _appDelegate = nil;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
+   
+    [self.tabBarController presentModalViewController:curLogging animated:NO];
+     
     NSArray * ideas = [Idea getRemoteIdeas];
+    
+    Idea *newIdea = [Idea alloc];
+    newIdea.ideaText = @"Another idea 2";
+    [newIdea sendIdea];
+    
+    NSArray *publicArray = [Idea getRemotePublicIdeas];
+    [[publicArray objectAtIndex:1] rateIdea];
+    
     return YES;
 }
 

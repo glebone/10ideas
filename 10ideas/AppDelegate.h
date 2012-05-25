@@ -9,15 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "Idea.h"
 
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 {
-    NSString *userId;   
+    NSString *userId; 
+  
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) NSString *userId;
 @property (strong, nonatomic) UITabBarController *tabBarController;
+
 
 + (AppDelegate *) getDelegate;
 

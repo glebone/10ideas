@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "loginController.h"
 
 @interface FirstViewController : UIViewController
 

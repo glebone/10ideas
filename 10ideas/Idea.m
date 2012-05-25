@@ -11,7 +11,7 @@
 
 @implementation Idea
 
-@synthesize ideaText, ideaAuthor;
+@synthesize ideaText, ideaAuthor, ideaID;
 
 
 
@@ -38,8 +38,11 @@
     NSMutableArray *objects = [[NSMutableArray alloc] init];
     for (NSDictionary *item in parsedArray) 
     {
+       
         [objects addObject:[Idea makeIdeaFromDictionary:item]]; 
     }
+    
+    
     
     return objects;
 }
@@ -48,16 +51,40 @@
 {
     Idea *tmp = [[[Idea alloc] init] autorelease];
     tmp.ideaText = [dict objectForKey:@"essential"];
+    tmp.ideaID = [dict objectForKey:@"_id"];
     NSLog(@"%@",tmp.ideaText);
+    NSLog(@"%@",tmp.ideaID);
+    
     
     return tmp;
 }
 
 + (NSArray *)getRemotePublicIdeas
 {
-    NSArray * ideas = [[[NSArray alloc] initWithObjects:nil] autorelease];
-    return ideas;
-}
+    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas/public.json?auth_token=%@",SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"];
+    //NSMutableArray *currentIdeas = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSLog(@"%@",allIdeasReq);
+    ASIHTTPRequest *ideas_req = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:allIdeasReq]];
+    [ideas_req setRequestMethod:@"GET"];
+    [ideas_req setDelegate:self];
+    [ideas_req addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [ideas_req startSynchronous];
+    NSError *error = [ideas_req error];
+    
+    if (error) {
+        NSLog(@" %@", error);
+        return nil;
+    }
+    
+    NSArray *parsedArray  = [[ideas_req responseString] JSONValue];
+    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    for (NSDictionary *item in parsedArray) 
+    {
+        [objects addObject:[Idea makeIdeaFromDictionary:item]]; 
+    }
+    
+    return objects;}
 
 + (Idea *) getIdeaWithId:(NSString *)ideaId
 {
@@ -79,7 +106,71 @@
 
 - (void) sendIdea
 {
-    NSLog(@"Sending idea...");
+    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@", SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"]; 
+    ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
+    
+    [request setPostValue:self.ideaText forKey:@"idea[essential]"];
+    [request addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(ideaSent:)];
+    [request setDidFailSelector:@selector(ideaFailed:)];
+    [request setRequestMethod:@"POST"];
+    [request startAsynchronous];
 }
+
+- (void) rateIdea
+{
+    NSLog(@"RateIdea");
+    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas/%@/vote.json?auth_token=%@", SERVER_URL, self.ideaID, @"NeFzqZqWDR6V3XQbn84Y"]; 
+    ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
+    
+    
+    [request addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(ideaRated:)];
+    [request setDidFailSelector:@selector(ideaFailed:)];
+    [request setRequestMethod:@"PUT"];
+    [request startAsynchronous];
+    
+}
+
+- (void) ideaSent:(ASIHTTPRequest *)req
+{
+    NSLog(@"Login done");
+    NSError *error = [req error];
+    if (!error) {
+        NSString *response = [req responseString];
+        NSLog(@"-- %@", response);
+        
+    }
+    else
+    {
+        NSLog(@"%@", error);
+    }
+   
+}
+
+- (void) ideaRated:(ASIHTTPRequest *)req
+{
+    NSLog(@"Login done");
+    NSError *error = [req error];
+    if (!error) {
+        NSString *response = [req responseString];
+        NSLog(@"-- %@", response);
+        
+    }
+    else
+    {
+        NSLog(@"%@", error);
+    }
+
+}
+
+
+- (void) ideaFailed:(ASIHTTPRequest *)req
+{
+    
+}
+
 
 @end

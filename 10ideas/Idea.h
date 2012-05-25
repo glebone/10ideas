@@ -18,11 +18,13 @@
 {
     NSString *ideaText;
     NSString *ideaAuthor;
+    NSString *ideaID;
 }
 
 
 @property (nonatomic, retain) NSString *ideaText;
 @property (nonatomic, retain) NSString *ideaAuthor;
+@property (nonatomic, retain) NSString *ideaID;
 
 - (id) initWithIdeaText:(NSString *) text;
 + (NSArray *) getRemoteIdeas;
@@ -32,5 +34,11 @@
 + (Idea *) getIdeaWithId:(NSString *)ideaId;
 
 - (void) sendIdea;
+- (void) rateIdea;
+- (void) ideaRated:(ASIHTTPRequest *)req;
+- (void) ideaSent:(ASIHTTPRequest *)req;
+- (void) ideaFailed:(ASIHTTPRequest *)req;
+- (void) publishIdea;
+- (void) ideaPublished:(ASIHTTPRequest *)req;
 
 @end
