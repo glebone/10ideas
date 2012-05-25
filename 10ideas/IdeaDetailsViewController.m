@@ -1,4 +1,4 @@
-//
+    //
 //  IdeaDetailsViewController.m
 //  10ideas
 //
@@ -13,16 +13,8 @@
 @synthesize ideaText;
 @synthesize idea;
 @synthesize rateButton;
+@synthesize saveButton;
 @synthesize edit;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -31,8 +23,14 @@
 
     if (idea)
         ideaText.text = idea.ideaText;
+    else {
+        isNew = YES;
+        ideaText.text = @"";
+        saveButton.enabled = YES;
+    }
 
     if (edit) {
+        saveButton.enabled = YES;
         ideaText.delegate = self;
         rateButton.hidden = YES;
         ideaText.editable = YES;
@@ -44,6 +42,7 @@
 {
     [self setIdeaText:nil];
     [self setRateButton:nil];
+    [self setSaveButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,6 +56,17 @@
 - (IBAction) back {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction) save {
+    if ([ideaText.text length] == 0)
+        return;
+    
+    idea = [[Idea alloc] initWithIdeaText:ideaText.text];
+    
+    [idea sendIdea];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
 	if([text isEqualToString:@"\n"])
