@@ -53,6 +53,7 @@
 		92E7CC9B15701EFD00996AE3 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7CC9A15701EFD00996AE3 /* FirstViewController.xib */; };
 		92E7CC9D15701F1000996AE3 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7CC9C15701F1000996AE3 /* SecondViewController.xib */; };
 		92E7CC9E15701F4E00996AE3 /* IdeaDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9284AE0C15701C9500D6F234 /* IdeaDetailsViewController.m */; };
+		92E7CCA115702C3C00996AE3 /* IdeaDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E7CCA015702C3B00996AE3 /* IdeaDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,9 +137,9 @@
 		9284AE0315701C8700D6F234 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		9284AE0B15701C9500D6F234 /* IdeaDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdeaDetailsViewController.h; sourceTree = "<group>"; };
 		9284AE0C15701C9500D6F234 /* IdeaDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdeaDetailsViewController.m; sourceTree = "<group>"; };
-		9284AE0D15701C9500D6F234 /* IdeaDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdeaDetailsViewController.xib; sourceTree = "<group>"; };
 		92E7CC9A15701EFD00996AE3 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		92E7CC9C15701F1000996AE3 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		92E7CCA015702C3B00996AE3 /* IdeaDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdeaDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +277,7 @@
 				92E7CC9A15701EFD00996AE3 /* FirstViewController.xib */,
 				9284AE0B15701C9500D6F234 /* IdeaDetailsViewController.h */,
 				9284AE0C15701C9500D6F234 /* IdeaDetailsViewController.m */,
-				9284AE0D15701C9500D6F234 /* IdeaDetailsViewController.xib */,
+				92E7CCA015702C3B00996AE3 /* IdeaDetailsViewController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -397,6 +398,7 @@
 				9284AE0A15701C8700D6F234 /* second@2x.png in Resources */,
 				92E7CC9B15701EFD00996AE3 /* FirstViewController.xib in Resources */,
 				92E7CC9D15701F1000996AE3 /* SecondViewController.xib in Resources */,
+				92E7CCA115702C3C00996AE3 /* IdeaDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
