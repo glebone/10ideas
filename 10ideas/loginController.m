@@ -9,6 +9,7 @@
 #import "loginController.h"
 
 @implementation loginController
+@synthesize indicator;
 @synthesize loginButton, emailText, passwordText, logView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,11 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
+    [emailText becomeFirstResponder];
 }
 
 - (void)viewDidUnload
 {
+    [self setIndicator:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -53,6 +57,8 @@
 {
     if (![self.emailText.text isEqualToString:@""] && ![self.passwordText.text isEqualToString:@""])
     {
+        [indicator startAnimating];
+        
         NSString *loginStr = [NSString stringWithFormat:@"%@/users.json", SERVER_URL]; 
         ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
         
@@ -66,9 +72,7 @@
         [request startAsynchronous];
     }
     NSLog(@"on logging");
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
+    }
 
 - (void) loginDone:(ASIHTTPRequest *)req
 {
@@ -81,9 +85,14 @@
         if ([parsedDic objectForKey:@"auth_token"])
         {    
          [[AppDelegate getDelegate] setUserId:[parsedDic objectForKey:@"auth_token"]];
-         [self.view removeFromSuperview];
-             NSLog(@"%@", [parsedDic objectForKey:@"auth_token"]);
+
+         [[NSUserDefaults standardUserDefaults] setValue:[parsedDic objectForKey:@"auth_token"] forKey:@"userId"];
+
+            NSLog(@"%@", [parsedDic objectForKey:@"auth_token"]);
             NSLog(@"%@", [[AppDelegate getDelegate] getUserId]);   
+
+            
+            [self dismissModalViewControllerAnimated:YES];
         }    
         
     }
@@ -92,7 +101,7 @@
         NSLog(@"%@", error);
     }
 
-    
+
 }
 
 - (void) loginFailed:(ASIHTTPRequest *)req
@@ -100,4 +109,8 @@
     NSLog(@"Login Failed");
 }
 
+- (void)dealloc {
+    [indicator release];
+    [super dealloc];
+}
 @end
