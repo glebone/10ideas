@@ -21,5 +21,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 - (IBAction) back;
+- (IBAction)rate:(id)sender;
 - (IBAction) save;
 @end

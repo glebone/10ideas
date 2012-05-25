@@ -56,6 +56,10 @@
 - (IBAction) back {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)rate:(id)sender {
+    [idea rateIdea];
+}
 - (IBAction) save {
     if ([ideaText.text length] == 0)
         return;

@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "10ideas/IdeaDetailsViewController.m"
-         timestampString = "359673246.285824"
+         timestampString = "359673787.16331"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "60"
-         endingLineNumber = "60"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-save"
          landmarkType = "5">
       </FileBreakpoint>
