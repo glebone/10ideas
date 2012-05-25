@@ -19,12 +19,14 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize userId;
-
+@synthesize publicIdeas;
 
 static AppDelegate* _appDelegate = nil;
 
 + (AppDelegate *) getDelegate
 {
+    if (!_appDelegate)
+        _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return _appDelegate;
 }
 
@@ -37,26 +39,31 @@ static AppDelegate* _appDelegate = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.publicIdeas = [Idea getRemotePublicIdeas];
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    UIViewController *viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil] autorelease];
-    UIViewController *viewController2 = [[[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil] autorelease];
+
+    UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:[[[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil] autorelease]];
+    UINavigationController *viewController2 = [[UINavigationController alloc] initWithRootViewController:[[[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil] autorelease]];
+    viewController1.navigationBarHidden = YES;
+    viewController2.navigationBarHidden = YES;
+    
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
     loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
    
     [self.tabBarController presentModalViewController:curLogging animated:NO];
      
-    NSArray * ideas = [Idea getRemoteIdeas];
-    
-    Idea *newIdea = [Idea alloc];
-    newIdea.ideaText = @"Another idea 2";
-    [newIdea sendIdea];
-    
-    NSArray *publicArray = [Idea getRemotePublicIdeas];
-    [[publicArray objectAtIndex:1] rateIdea];
+//    NSArray * ideas = [Idea getRemoteIdeas];
+//    
+//    Idea *newIdea = [Idea alloc];
+//    newIdea.ideaText = @"Another idea 2";
+//    [newIdea sendIdea];
+//    
+//    [[publicArray objectAtIndex:1] rateIdea];
     
     return YES;
 }

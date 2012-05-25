@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IdeaDetailsViewController.h"
 
 @interface SecondViewController : UIViewController
+{
+    UILabel *ideasCount;
+    UILabel *ideasLabel;
+}
+@property (retain, nonatomic) IBOutlet UILabel *ideasCount;
+@property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
+- (IBAction)handleCreateIdea:(id)sender;
 
 @end

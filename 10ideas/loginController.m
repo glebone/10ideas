@@ -67,7 +67,7 @@
     }
     NSLog(@"on logging");
     
-    [self.view removeFromSuperview];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void) loginDone:(ASIHTTPRequest *)req

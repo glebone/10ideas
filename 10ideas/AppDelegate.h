@@ -15,13 +15,14 @@
 
 {
     NSString *userId; 
-  
+    NSArray *publicIdeas;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) NSString *userId;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
+@property (nonatomic, retain) NSArray *publicIdeas;
 
 + (AppDelegate *) getDelegate;
 

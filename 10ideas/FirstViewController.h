@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "loginController.h"
+#import "IdeaDetailsViewController.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+{
+    IBOutlet UITableView *table;
+}
+@property (nonatomic, retain) IBOutlet UITableView *table;
+@property (retain, nonatomic) IBOutlet UILabel *ideasCount;
+@property (retain, nonatomic) IBOutlet UILabel *ideasLabel;
 
 @end
