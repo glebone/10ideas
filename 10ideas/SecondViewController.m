@@ -32,7 +32,7 @@
 {
     [super viewWillAppear:animated];
     
-    int count = [[[AppDelegate getDelegate] publicIdeas] count];
+    int count = [[[AppDelegate getDelegate] myIdeas] count];
     ideasCount.text = [NSString stringWithFormat:@"%d",count];
     
     
@@ -59,7 +59,7 @@
 }
 - (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[AppDelegate getDelegate] publicIdeas] count];
+    return [[[AppDelegate getDelegate] myIdeas] count];
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -70,7 +70,7 @@
     if (!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentefire];
     
-    Idea *idea = [[[AppDelegate getDelegate] publicIdeas] objectAtIndex:indexPath.row];
+    Idea *idea = [[[AppDelegate getDelegate] myIdeas] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = idea.ideaText;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Idea №%d",indexPath.row+1];
@@ -81,7 +81,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Idea *idea = [[[AppDelegate getDelegate] publicIdeas] objectAtIndex:indexPath.row];
+    Idea *idea = [[[AppDelegate getDelegate] myIdeas] objectAtIndex:indexPath.row];
     IdeaDetailsViewController *details = [[[IdeaDetailsViewController alloc] initWithNibName:@"IdeaDetailsViewController" bundle:nil] autorelease];
     
     details.idea = idea;

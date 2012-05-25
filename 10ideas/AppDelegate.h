@@ -16,6 +16,7 @@
 {
     NSString *userId; 
     NSArray *publicIdeas;
+    NSArray *myIdeas;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
 @property (nonatomic, retain) NSArray *publicIdeas;
+@property (nonatomic, retain) NSArray *myIdeas;
+
 
 + (AppDelegate *) getDelegate;
 

@@ -19,7 +19,7 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize userId;
-@synthesize publicIdeas;
+@synthesize publicIdeas, myIdeas;
 
 static AppDelegate* _appDelegate = nil;
 
@@ -72,6 +72,8 @@ static AppDelegate* _appDelegate = nil;
         loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
         [self.tabBarController presentModalViewController:curLogging animated:NO];
     }
+    
+    myIdeas = [Idea getRemoteIdeas];
      
 //    NSArray * ideas = [Idea getRemoteIdeas];
 //    
