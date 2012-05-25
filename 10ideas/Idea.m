@@ -18,7 +18,7 @@
 
 + (NSArray *)getRemoteIdeas
 {
-    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@",SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"];
+    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@",SERVER_URL, [[AppDelegate getDelegate] userId]];
     //NSMutableArray *currentIdeas = [[[NSMutableArray alloc] init] autorelease];
     
     NSLog(@"%@",allIdeasReq);
@@ -61,7 +61,7 @@
 
 + (NSArray *)getRemotePublicIdeas
 {
-    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas/public.json?auth_token=%@",SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"];
+    NSString *allIdeasReq = [NSString stringWithFormat:@"%@/ideas/public.json?auth_token=%@",SERVER_URL, [[AppDelegate getDelegate] userId]];
     //NSMutableArray *currentIdeas = [[[NSMutableArray alloc] init] autorelease];
     
     NSLog(@"%@",allIdeasReq);
@@ -106,7 +106,7 @@
 
 - (void) sendIdea
 {
-    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@", SERVER_URL, @"NeFzqZqWDR6V3XQbn84Y"]; 
+    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas.json?auth_token=%@", SERVER_URL, [[AppDelegate getDelegate] userId]]; 
     ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
     
     [request setPostValue:self.ideaText forKey:@"idea[essential]"];
@@ -121,7 +121,7 @@
 - (void) rateIdea
 {
     NSLog(@"RateIdea");
-    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas/%@/vote.json?auth_token=%@", SERVER_URL, self.ideaID, @"NeFzqZqWDR6V3XQbn84Y"]; 
+    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas/%@/vote.json?auth_token=%@", SERVER_URL, self.ideaID, [[AppDelegate getDelegate] userId]]; 
     ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
     
     

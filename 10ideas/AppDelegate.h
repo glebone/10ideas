@@ -28,4 +28,8 @@
 
 - (NSString *) getUserId;
 
+- (NSString *)userId;
+
+- (void)setUserId:(NSString *)newValue;
+
 @end

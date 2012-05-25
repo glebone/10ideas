@@ -28,8 +28,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    ideaText.text = idea.ideaText;
+
+    if (idea)
+        ideaText.text = idea.ideaText;
 
     if (edit) {
         ideaText.delegate = self;

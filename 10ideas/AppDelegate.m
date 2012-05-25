@@ -29,6 +29,19 @@ static AppDelegate* _appDelegate = nil;
         _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return _appDelegate;
 }
+- (NSString *)userId {
+    if (!userId)
+        userId =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userId"];
+    
+    return userId;
+}
+
+- (void)setUserId:(NSString *)newValue {
+    [userId autorelease];
+    userId = [newValue retain];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:userId forKey:@"userId"];
+}
 
 - (void)dealloc
 {
@@ -53,9 +66,12 @@ static AppDelegate* _appDelegate = nil;
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
-    loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
-   
-    [self.tabBarController presentModalViewController:curLogging animated:NO];
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"userId"])
+    {
+        loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
+        [self.tabBarController presentModalViewController:curLogging animated:NO];
+    }
      
 //    NSArray * ideas = [Idea getRemoteIdeas];
 //    
@@ -127,5 +143,6 @@ static AppDelegate* _appDelegate = nil;
 {
 }
 */
+
 
 @end

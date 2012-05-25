@@ -91,6 +91,12 @@
     
 }
 - (IBAction)handleCreateIdea:(id)sender {
+    IdeaDetailsViewController *details = [[[IdeaDetailsViewController alloc] initWithNibName:@"IdeaDetailsViewController" bundle:nil] autorelease];
+    
+    details.idea = nil;
+    details.edit = YES;
+    
+    [self.navigationController pushViewController:details animated:YES];
 }
 
 @end
