@@ -80,8 +80,9 @@
     NSError *error = [req error];
     if (!error) {
         NSString *response = [req responseString];
-        NSLog(@"-- %@", response);
+        
         NSDictionary *parsedDic  = [response JSONValue];
+        NSLog(@"%@", parsedDic);
         if ([parsedDic objectForKey:@"auth_token"])
         {    
          [[AppDelegate getDelegate] setUserId:[parsedDic objectForKey:@"auth_token"]];
@@ -93,11 +94,35 @@
              [[NSNotificationCenter defaultCenter] postNotificationName:@"needUpdateIdeas" object:self];
             
             [self dismissModalViewControllerAnimated:YES];
-        }    
+        }  
+        else if ([parsedDic objectForKey:@"errors"])
+        {
+            [self relogin];
+        }
+        else
+        {
+            NSLog(@"%@", error);
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                              message:@"Login failed!"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            [message release];
+        }
         
     }
     else
     {
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                          message:@"Login failed!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        [message release];
+
         NSLog(@"%@", error);
     }
 
@@ -108,6 +133,75 @@
 {
     NSLog(@"Login Failed");
 }
+
+
+- (void) relogin
+{
+    NSString *loginStr = [NSString stringWithFormat:@"%@/users/sign_in.json", SERVER_URL]; 
+    ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
+    
+    [request setPostValue:self.emailText.text forKey:@"user[email]"];
+    [request setPostValue:self.passwordText.text forKey:@"user[password]"];
+    [request addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(reloginDone:)];
+    [request setDidFailSelector:@selector(reloginFailed:)];
+    [request setRequestMethod:@"POST"];
+    [request startAsynchronous];
+}
+
+- (void) reloginDone:(ASIHTTPRequest *)req
+{
+    NSLog(@"ReLogin done");
+    NSError *error = [req error];
+    if (!error) {
+        NSString *response = [req responseString];
+        NSLog(@"-- %@", response);
+        NSDictionary *parsedDic  = [response JSONValue];
+        if ([parsedDic objectForKey:@"auth_token"])
+        {    
+            [[AppDelegate getDelegate] setUserId:[parsedDic objectForKey:@"auth_token"]];
+            
+            [[NSUserDefaults standardUserDefaults] setValue:[parsedDic objectForKey:@"auth_token"] forKey:@"userId"];
+            
+            NSLog(@"%@", [parsedDic objectForKey:@"auth_token"]);
+            NSLog(@"%@", [[AppDelegate getDelegate] getUserId]);   
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"needUpdateIdeas" object:self];
+            
+            [self dismissModalViewControllerAnimated:YES];
+        }    
+        
+    }
+    else 
+    {
+        
+        NSLog(@"%@", error);
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                          message:@"Login failed!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        [message release];
+    }
+    
+}
+
+- (void) reloginFailed:(ASIHTTPRequest *)req
+{
+    NSLog(@"ReLogin Failed");
+  
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                      message:@"Login failed!"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    [message release];
+
+    
+}
+
 
 - (void)dealloc {
     [indicator release];

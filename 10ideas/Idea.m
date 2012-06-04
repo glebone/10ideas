@@ -173,8 +173,34 @@
 
 - (void) ideaFailed:(ASIHTTPRequest *)req
 {
-    
+    NSLog(@"idea failed");  
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10ideas"
+                                                      message:@"10ideas api failed!"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    [message release];
 }
 
+- (void) publishIdea
+{
+    NSLog(@"RateIdea");
+    NSString *loginStr = [NSString stringWithFormat:@"%@/ideas/%@/publish.json?auth_token=%@", SERVER_URL, self.ideaID, [[AppDelegate getDelegate] userId]]; 
+    ASIFormDataRequest *request = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:loginStr]] autorelease];
+    
+    
+    [request addRequestHeader:@"User-Agent" value:@"ZX-Spectrum"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(ideaPublished:)];
+    [request setDidFailSelector:@selector(ideaFailed:)];
+    [request setRequestMethod:@"PUT"];
+    [request startAsynchronous]; 
+}
+
+- (void) ideaPublished:(ASIHTTPRequest *)req
+{
+    NSLog(@"Idea published"); 
+}
 
 @end

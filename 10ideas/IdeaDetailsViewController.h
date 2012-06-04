@@ -15,6 +15,7 @@
     BOOL isNew;
 }
 @property BOOL edit;
+@property BOOL newIdea;
 @property (retain, nonatomic) IBOutlet UITextView *ideaText;
 @property (nonatomic, retain) Idea *idea;
 @property (retain, nonatomic) IBOutlet UIButton *rateButton;

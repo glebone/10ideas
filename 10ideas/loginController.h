@@ -30,6 +30,9 @@
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 - (IBAction)OnLogin:(id)sender;
+- (void) relogin;
+- (void) reloginDone:(ASIHTTPRequest *) req;
+- (void) reloginFailed:(ASIHTTPRequest *) req;
 - (void) loginDone:(ASIHTTPRequest *)req;
 - (void) loginFailed:(ASIHTTPRequest *)req;
 

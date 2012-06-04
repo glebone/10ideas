@@ -27,14 +27,25 @@
         isNew = YES;
         ideaText.text = @"";
         saveButton.enabled = YES;
+        saveButton.enabled = YES;
+         ideaText.delegate = self;
+         rateButton.hidden = YES;
+         ideaText.editable = YES;
+         [ideaText becomeFirstResponder];
+        
     }
 
     if (edit) {
-        saveButton.enabled = YES;
+        /*saveButton.enabled = YES;
         ideaText.delegate = self;
         rateButton.hidden = YES;
         ideaText.editable = YES;
-        [ideaText becomeFirstResponder];
+        [ideaText becomeFirstResponder];*/
+        [self.rateButton setTitle:@"Publish" forState:UIControlStateNormal];
+    }
+    else
+    {
+        
     }
 }
 
@@ -58,7 +69,15 @@
 }
 
 - (IBAction)rate:(id)sender {
-    [idea rateIdea];
+    if (self.edit)
+    {
+        [idea publishIdea];
+    }
+    else
+    {
+      [idea rateIdea];
+      [self.rateButton setEnabled:NO]; 
+    }    
 }
 - (IBAction) save {
     if ([ideaText.text length] == 0)

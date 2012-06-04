@@ -45,6 +45,9 @@ static AppDelegate* _appDelegate = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (!userId)
+        userId =  [[[NSUserDefaults standardUserDefaults] valueForKey:@"userId"] retain];
+
     if ([self userId] == nil)
     {
         loginController *curLogging = [[loginController alloc] initWithNibName:@"loginController" bundle:nil];
@@ -130,9 +133,10 @@ static AppDelegate* _appDelegate = nil;
 
 - (NSString *) getUserId
 {
-    self.userId = TEMP_USER_ID;
-    NSLog(@">>>> %@", self.userId);
-    return self.userId;
+    if (!userId)
+        userId =  [[[NSUserDefaults standardUserDefaults] valueForKey:@"userId"] retain];
+    
+    return userId;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
