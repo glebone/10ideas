@@ -161,6 +161,13 @@
     if (!error) {
         NSString *response = [req responseString];
         NSLog(@"-- %@", response);
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                          message:@"Voted!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        [message release];
         
     }
     else
@@ -201,6 +208,13 @@
 - (void) ideaPublished:(ASIHTTPRequest *)req
 {
     NSLog(@"Idea published"); 
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"10 ideas"
+                                                      message:@"Idea published!"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    [message release];
 }
 
 @end
